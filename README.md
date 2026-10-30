@@ -5,7 +5,11 @@
 
 ## 在线试玩
 
-https://yogurt2333.github.io/friendpok/
+- 10 人全角色自动对战：https://yogurt2333.github.io/friendpok/
+- 最早验收的两人版（Mano vs 通风橱）：https://yogurt2333.github.io/friendpok/battle-prototype.html
+- 四招技能图 + 动作校验：https://yogurt2333.github.io/friendpok/skills-preview.html
+
+演示当天的流程、备用方案和可能被问到的问题见 [docs/演示流程.md](docs/演示流程.md)。
 
 ## 本地离线跑
 
@@ -49,8 +53,10 @@ https://yogurt2333.github.io/friendpok/
 ## 文件结构
 
 ```
-index.html              演示页（脚本样式内联，素材外置）
+index.html              演示页：10 人自动对战（脚本样式内联，素材外置）
+battle-prototype.html   最早的两人版：Mano vs 通风橱，八招演出
 skills-preview.html     四招技能图 + 动作校验页
+热带鱼技能校验.html      剑玉摆锤初版动作校验
 assets/
   characters/<角色>/    待机立绘、角色设定
   skills/               每人四招技能图

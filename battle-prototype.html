@@ -1,0 +1,386 @@
+<!doctype html>
+<!-- Two-character battle with deterministic rules, recorded events and offline assets. -->
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>跳海 · Mano VS 通风橱</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0e1117;color:#f7eedc;font:16px 'Microsoft YaHei',sans-serif}button{font:inherit;cursor:pointer;border:1px solid #4a4b53;background:#232735;color:inherit;padding:8px 14px;border-radius:5px}button:hover,button.active{background:#ead79d;color:#161a23}main{max-width:1600px;margin:auto;padding:24px 36px 90px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.brand{font-size:26px;font-weight:900;letter-spacing:3px}.brand small{font-size:12px;color:#b5ad9c;letter-spacing:1px;margin-left:16px}.controls{display:flex;gap:7px}.round{display:flex;gap:12px;color:#b8b5ad;font-size:13px;align-items:center}.round b{color:#f1ce72;background:#383020;padding:7px 13px}.stage{position:relative;height:390px;border:1px solid #5b5041;background:linear-gradient(#1c242b 0 50%,#49392f 50% 54%,#302d2b 54% 72%,#635344 72% 73%,#242323 73%);overflow:hidden;margin:14px 0}.sign{position:absolute;left:50%;top:33px;transform:translateX(-50%);font-weight:900;font-size:28px;letter-spacing:10px;color:#f0d69b;border:3px solid #a88e62;padding:12px 24px;box-shadow:0 0 35px #ecaa3e16}.shelves{position:absolute;left:8%;right:8%;top:125px;height:70px;border-top:5px solid #554838;border-bottom:7px solid #554838;background:repeating-linear-gradient(90deg,transparent 0 34px,#8f7855 35px 46px,transparent 47px 79px,#596d5c 80px 91px,transparent 92px 130px);opacity:.45}.fighter{position:absolute;bottom:21px;width:46%;height:290px;text-align:center}.fighter.left{left:1%}.fighter.right{right:1%}.sprite{height:265px;margin:auto;image-rendering:pixelated;position:relative;z-index:2}.mano{width:270px;background:url('assets/mano-proportions.png') center top / 300% 112% no-repeat}.tong{width:225px;object-fit:contain;transform:scaleX(-1)}.platform{position:absolute;bottom:-5px;left:25%;width:50%;height:30px;border-radius:50%;background:#111a;box-shadow:0 0 0 3px #ac977936}.hp{position:absolute;z-index:3;top:16px;width:32%;background:#111822df;padding:12px 16px;border:1px solid #62665b}.hp.left{left:20px}.hp.right{right:20px}.name{font-size:24px;font-weight:900;display:flex;justify-content:space-between}.name span{font-size:14px;font-weight:400;align-self:center;color:#cec8b8}.track{height:12px;background:#131515;margin-top:8px}.fill{height:100%;width:100%;background:#a9ce92}.vs{position:absolute;left:50%;top:235px;transform:translateX(-50%);color:#d9bc74;font-size:29px;font-weight:900;font-style:italic}.announce{background:#e8d7ab;color:#292821;padding:13px 20px;text-align:center;font-size:21px;font-weight:700;min-height:56px}.decks{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:18px}.deck-head{display:flex;justify-content:space-between;margin-bottom:10px;font-size:18px;font-weight:bold}.deck-head small{font-size:12px;color:#b5b1a6;font-weight:400;align-self:center}.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{text-align:left;border:1px solid #54524a;border-radius:0;background:#20252d;padding:12px 15px;min-height:109px;position:relative}.card strong{font-size:19px;display:block;margin-bottom:6px}.card p{font-size:14px;line-height:1.6;color:#c6c7c4;margin:0 0 8px}.card small{font-size:12px;color:#dfc998}.card.ult{border-color:#9e794b;background:#302a29}.card.selected{outline:2px solid #efd582;background:#3a3b32;color:#fff}.card:hover{background:#303640;color:inherit}.foot{display:flex;justify-content:space-between;font-size:12px;color:#9d9e9b;margin-top:14px}.switcher{position:fixed;z-index:20;bottom:15px;left:50%;transform:translateX(-50%);background:#f5f0e4;color:#222;padding:7px;border-radius:30px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 30px #0008;white-space:nowrap;font-size:13px}.switcher button{border:0;border-radius:30px;background:#242935;color:white}.prototype{color:#d0af75}.variant-B .stage{background:linear-gradient(90deg,#392535 0 49.9%,#dbc79d 49.9% 50.1%,#25343a 50.1%);height:390px}.variant-B .shelves,.variant-B .sign{display:none}.variant-B .fighter{height:290px}.variant-B .hp{background:none;border:0;width:39%;top:10px}.variant-B .vs{top:190px}.variant-B .decks{gap:2px}.variant-B .deck{background:#21212c;padding:16px}.variant-C .stage{height:340px;margin-right:270px;background:radial-gradient(ellipse at bottom,#6e5136,#181f24 75%)}.variant-C .sign{font-size:18px;top:20px;padding:8px}.variant-C .shelves{display:none}.variant-C .hp{width:35%;top:12px}.variant-C .name{font-size:18px}.variant-C .fighter{bottom:5px;height:240px}.variant-C .sprite{height:225px}.variant-C .mano{width:230px}.variant-C .tong{width:210px}.variant-C .vs{top:210px}.side{display:none}.variant-C .side{display:block;position:absolute;right:36px;top:124px;width:246px;padding:20px;background:#20252e;border-left:3px solid #d3b578;height:340px}.side h3{margin:0 0 22px}.side p{color:#bcb9b0;font-size:14px;line-height:2}.variant-C main{position:relative}.variant-C .announce{text-align:left}.variant-C .cards{gap:0}.variant-C .card{border:0;border-top:1px solid #505259;background:transparent}.variant-C .card.ult{border-top:2px solid #bc9b65}.variant-C .card strong{font-size:18px}@media(max-width:900px){main{min-width:900px;padding:20px 24px 90px}header{gap:20px}.brand small{display:none}.controls button{font-size:12px;padding:7px}.card p{font-size:13px}.variant-C .side{right:24px}}
+</style><style data-source="assets/pixel-ui.css">
+@font-face{font-family:FusionPixel;src:url('assets/fusion-pixel-12px-zh_hans.woff2') format('woff2');font-display:swap;font-weight:100 900}
+:root{--ink:#111d21;--face:#bdc8c5;--light:#e5eae3;--shade:#7b9291;--amber:#e9a53f}
+body{background:#71888a;color:#142126;font-family:FusionPixel,'Microsoft YaHei',sans-serif;font-weight:400;font-size:24px;-webkit-font-smoothing:none}
+main{max-width:1680px;padding:24px 36px 90px}
+button,.switcher button{border-radius:0;font-weight:400;font-size:24px;border:3px solid var(--ink);background:var(--face);color:var(--ink);box-shadow:inset 3px 3px var(--light),inset -3px -3px var(--shade),3px 4px 0 #394f54,5px 7px 0 var(--ink);transition:none;position:relative}
+button:hover,.switcher button:hover{background:#d8dfd1;color:var(--ink)}
+button:active,button.active{background:var(--amber);color:var(--ink);transform:translate(2px,2px);box-shadow:inset 3px 3px #ffc75e,inset -3px -3px #a56e30,1px 2px 0 #394f54,3px 5px 0 var(--ink)}
+button:focus-visible{outline:3px dashed #f7e9b3;outline-offset:7px}
+.controls{gap:12px}.controls button{font-size:24px;padding:6px 12px}.brand{font-size:36px;font-weight:400;letter-spacing:1px}.brand small{color:#203b40;font-size:12px;letter-spacing:2px}.round{color:#172b30;font-size:24px}.round b{background:#263c40;color:#f4d190;border:3px solid var(--ink);font-weight:400;font-size:24px;padding:3px 12px}.prototype{font-size:12px;color:#1f3a3e}
+.stage{border:4px solid var(--ink);box-shadow:inset 4px 4px #8d9c90,4px 6px #3c5558;background:linear-gradient(#253435 0 49%,#5e4c3d 49% 53%,#403a32 53% 72%,#887454 72% 74%,#302f2a 74%);margin-bottom:20px}
+.hp{border:3px solid var(--ink);background:#bdc8c5;color:var(--ink);box-shadow:inset 3px 3px #e5eae3,inset -3px -3px #7b9291,4px 4px #162226;padding:8px 12px}.name{font-size:24px;font-weight:400}.name span{font-size:24px;color:#263b3d}.track{height:15px;border:3px solid #192d2d;background:#526a62}.fill{background:repeating-linear-gradient(90deg,#9cce78 0 17px,#7daa5d 17px 20px);box-shadow:inset 0 3px #c5e4a0}
+.sign{border:4px solid #162226;background:#435653;color:#f0d49b;box-shadow:inset 3px 3px #8d9c83,inset -3px -3px #293c39,4px 5px #172628;font-weight:400;font-size:36px;padding:6px 20px}.vs{color:#efd399;text-shadow:3px 3px #18282b;font-size:36px;font-weight:400;font-style:normal}
+.announce{border:3px solid var(--ink);background:#e9ddb7;box-shadow:inset 3px 3px #fff2cf,inset -3px -3px #b6a57e,4px 5px #3b5357;color:#202c2c;font-size:24px;font-weight:400;padding:10px 18px}
+.decks{gap:28px;margin-top:20px}.deck-head{font-size:24px;font-weight:400;border-bottom:3px solid #273d40;padding-bottom:7px;margin-bottom:12px}.deck-head small{font-size:12px;color:#203b3f}.cards{gap:14px}
+.card,.variant-C .card{border:3px solid var(--ink);background:var(--face);color:var(--ink);padding:12px 14px;min-height:140px;box-shadow:inset 3px 3px var(--light),inset -3px -3px var(--shade),3px 4px 0 #3a5054,5px 7px 0 var(--ink)}
+.card strong,.variant-C .card strong{font-size:24px;line-height:1.15;font-weight:400;margin-bottom:8px}.card p{color:#233a3c;font-size:24px;line-height:1.15;margin:0 0 10px}.card small{font-size:12px;color:#2c474b;display:block;letter-spacing:0;line-height:1.4}
+.card.ult,.variant-C .card.ult{border:3px solid var(--ink);background:#dfbe7d;box-shadow:inset 3px 3px #f5dda5,inset -3px -3px #a3824e,3px 4px 0 #3a5054,5px 7px 0 var(--ink)}
+.card:hover{background:#d7dfd3}.card.selected{outline:0;background:var(--amber);color:var(--ink);transform:translate(2px,3px);box-shadow:inset 3px 3px #ffd077,inset -3px -3px #a56e30,1px 1px #3a5054,3px 4px var(--ink)}.card.ult:hover{background:#eed09b}.card.selected p,.card.selected small{color:#342a18}
+.foot{font-size:12px;color:#203c40}.switcher{border-radius:0;border:3px solid var(--ink);background:#bcc9c4;color:var(--ink);box-shadow:4px 5px #1a3035;font-size:24px;gap:18px;padding:8px 16px}.switcher button{font-size:24px;background:#dce2d7;color:#162226;padding:3px 10px}.variant-B .deck{background:#647c7e;padding:14px}.variant-B .decks{gap:20px}.variant-B .hp{border:3px solid var(--ink);background:#bdc8c5}.variant-C .cards{gap:14px}.variant-C .side{background:#bdc8c5;color:var(--ink);border:3px solid var(--ink);box-shadow:inset 3px 3px var(--light),4px 5px #354d51}.variant-C .side p{color:#243d41;font-size:24px}.variant-C .side small{font-size:12px}
+@media(max-width:1200px){header{flex-wrap:wrap;gap:16px}.card p{font-size:24px}.brand small{display:none}.controls button{font-size:24px}.round{font-size:12px}.card strong{font-size:24px}}
+
+</style>
+<style data-source="assets/mano-skill.css">
+.skill-demo-tools{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:18px 0 12px;font-size:12px;color:#203c40}.skill-demo-tools button{font-size:24px;padding:7px 18px}.skill-demo-tools small{font-size:12px}.skill-step{font-size:24px;min-width:110px}.skill-preview-thumb{width:64px;height:58px;object-fit:contain;float:right;image-rendering:pixelated;margin:0 0 3px 8px;pointer-events:none}.skill-layer{position:absolute;inset:0;pointer-events:none;z-index:8;overflow:hidden}.skill-layer[hidden]{display:none}.skill-actor,.skill-vape,.skill-hit,.skill-damage,.skill-trail{position:absolute;pointer-events:none}.skill-actor{transform-origin:center;image-rendering:pixelated;object-fit:contain}.skill-vape{width:28px;height:38px;object-fit:contain;image-rendering:pixelated;transform-origin:center}.skill-hit{width:128px;height:128px;object-fit:contain;image-rendering:pixelated;z-index:12}.skill-damage{color:#fff0b4;font-family:FusionPixel,sans-serif;font-size:48px;text-shadow:3px 0 #522a25,-3px 0 #522a25,0 3px #522a25,0 -3px #522a25;z-index:14;white-space:nowrap}.skill-trail{height:6px;width:70px;background:#f6d2e6;box-shadow:-20px 15px 0 #d88eaf,-35px -12px 0 #f4e4cc;opacity:0}.skill-hit-test{filter:brightness(4)}.skill-credits{font-size:12px;color:#244044}.skill-credits a{color:inherit}.cards{align-items:stretch}.decks{grid-template-columns:repeat(2,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.deck,.card{min-width:0}.skill-demo-note{font-size:12px;color:#213a3d;line-height:1.8;margin:12px 0}.skill-demo-tools button[disabled]{opacity:.6;cursor:wait}
+.skill-phone,.skill-keys{position:absolute;pointer-events:none;image-rendering:pixelated;object-fit:contain;transform-origin:center}
+.skill-layer.ultimate{background:#23151c33;box-shadow:inset 0 0 0 4px #edc26a}.skill-layer.ultimate .skill-damage{color:#ffe09a}.skill-layer.ultimate .skill-trail{width:110px;height:8px;background:#ffe09a}
+.skill-status-badge{position:absolute;left:20px;top:108px;z-index:10;background:#cab3e0;color:#342146;border:3px solid #21182d;padding:5px 10px;box-shadow:3px 3px #21182d;font:24px FusionPixel,sans-serif;pointer-events:none}.skill-status-badge[hidden]{display:none}
+.dj-effects{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;background:#10132a66}.dj-effects[hidden]{display:none}.dj-ball{position:absolute;top:5px;left:calc(50% - 42px);width:84px;height:84px;object-fit:contain;image-rendering:pixelated;transform-origin:50% 10%}.dj-beam{position:absolute;top:20px;left:calc(50% - 160px);width:320px;height:420px;transform-origin:50% 0;clip-path:polygon(48% 0,52% 0,100% 100%,0 100%)}.dj-floor-lights{position:absolute;bottom:9px;left:0;right:0;height:15px;background:repeating-linear-gradient(90deg,#72dae277 0 65px,transparent 65px 82px,#de86c977 82px 147px,transparent 147px 164px,#daca7377 164px 229px,transparent 229px 246px)}.dj-wave{position:absolute;object-fit:contain;image-rendering:pixelated;pointer-events:none;z-index:11}
+
+</style><style data-source="assets/character-standard.css">
+/* Mano remains unchanged. Normalize the visible bounds of the new male PNG to the Mano 50% reference. */
+.tong{width:288px;height:288px;object-fit:contain;top:15px}
+.variant-C .tong{width:245px;height:245px;top:5px}
+
+</style><style data-source="assets/battle-game.css">
+.battle-mode .skill-demo-tools{display:none}.match-controls{margin:18px 0;color:#162d31}.match-buttons{display:flex;flex-wrap:wrap;gap:12px}.match-buttons button{font-size:24px;padding:8px 15px}.match-buttons button:disabled{opacity:.5;cursor:default}#match-info{font-size:12px;margin-top:16px}.match-result{padding:16px;margin:18px 0;border:4px solid #182a2e;background:#edce8c;font:32px FusionPixel,sans-serif;box-shadow:4px 5px #344c50}.match-result[hidden]{display:none}.match-log{margin-top:24px;border-top:3px solid #263d40;padding-top:10px}.match-log h2{font-size:24px;font-weight:400}.match-log ol{height:175px;overflow:auto;font:16px/1.9 'Microsoft YaHei',sans-serif;margin:0;padding:10px 14px 10px 40px;background:#c1ccc3;border:3px solid #283e40;list-style:none}.match-log p{font-size:12px}.battle-mode .card:disabled{cursor:default;opacity:1}.battle-mode .card.unavailable{opacity:.5}.battle-mode .card.selected{opacity:1}.battle-mode .card.acting-owner{border-color:#204b50}.battle-mode .stage .hp{z-index:15}.battle-mode .foot{line-height:1.8}
+
+</style><body><main><header><div class="brand">跳海 · 朋友对战<small>FRIENDS FIGHT NIGHT</small></div><div class="controls"><button id="play">▶ 预览待机</button><button id="auto">一键连播：关</button><button class="speed active">1×</button><button class="speed">2×</button><button class="speed">4×</button><button class="speed">8×</button><button id="mute">音效：待接入</button></div></header>
+<div class="round"><b>16 强 · 第 01 场</b><span>Mano vs 通风橱</span><span>／</span><span>单败淘汰 · BO1</span><span style="margin-left:auto" class="prototype">布局原型 · 血量及数值仅供排版</span></div>
+<section class="stage"><div class="shelves"></div><div class="sign">跳海酒馆</div><div class="hp left"><div class="name">Mano<span>100 / 100</span></div><div class="track"><div class="fill"></div></div></div><div class="hp right"><div class="name">通风橱<span>100 / 100</span></div><div class="track"><div class="fill"></div></div></div><div class="fighter left"><div class="platform"></div><div class="sprite mano" role="img" aria-label="Mano 50% 比例样板"></div></div><div class="vs">VS</div><div class="fighter right"><div class="platform"></div><img class="sprite tong" src="assets/tongfengchu-50-v2.png" alt="通风橱：对齐 Mano 50% 母版的第二版立绘"></div></section>
+<aside class="side"><h3>本场对决</h3><p>Mano<br>对阵<br>通风橱</p><p>两人完整对战样板<br>主持人控制下一场</p><small>对局记录区 · 占位</small></aside>
+<div class="announce" id="announce">双方准备就绪 · 点击下方技能格，预览报招文字</div><div class="decks" id="decks"></div><div class="foot"><span>操作提示：点击卡片预览选中状态；点击 Mano 的「我烟呢？」预览完整攻击；其余技能仅报招。</span><span>人物统一以 Mano 50% 版为比例基准 · 通风橱 v2 待校验</span></div>
+</main><nav class="switcher"><button id="prev" aria-label="上一方案">←</button><span id="variantLabel"></span><button id="next" aria-label="下一方案">→</button></nav>
+<script>
+const data=[{name:'Mano',skills:[['我烟呢？','低头捡烟却平地摔，整个人飞出去撞向对手。','伤害 24 · 命中 100%'],['怎么全掉了','电子烟、手机、钥匙依次飞出，造成三段伤害。','伤害 9 × 3 · 命中 95%'],['抽一口','抽一口，恢复少量生命。','恢复 18 HP'],['大烟杆子出离愤怒','平地摔引发装备爆飞，最后本人滑撞。','伤害 42 · 行动两次后解锁 · 每场一次']]},{name:'通风橱',skills:[['夏洛克三连刺','肉肠快速连刺三下，算一次行动。','伤害 9 × 3 · 命中 95%'],['吃肠','咬一口肉肠，恢复少量生命。','恢复 18 HP'],['塞你嘴里','造成伤害，并降低对手下一次攻击伤害。','伤害 15 · 下次攻击伤害 −30%'],['肠控全场','用肉肠打碟，发出三道节拍冲击波。','伤害 14 × 3 · 行动两次后解锁 · 每场一次']]}];
+document.querySelector('#decks').innerHTML=data.map(d=>`<section class="deck"><div class="deck-head">${d.name}<small>普通技不可连续重复 · 大招未解锁</small></div><div class="cards">${d.skills.map((s,i)=>`<button class="card ${i===3?'ult':''}" data-owner="${d.name}" data-skill="${s[0]}"><strong>${s[0]} ${i===3?'✦':''}</strong><p>${s[1]}</p><small>${s[2]}</small></button>`).join('')}</div></section>`).join('');
+document.querySelectorAll('.card').forEach(b=>b.onclick=()=>{document.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.querySelector('#announce').textContent=`${b.dataset.owner} 使用了「${b.dataset.skill}」！`;});
+const variants=['A','B','C'],labels=['A · 酒馆竞技场','B · 双方聚光对决','C · 赛事转播台'];let index=Math.max(0,variants.indexOf(new URL(location.href).searchParams.get('variant')));function renderVariant(){document.body.classList.remove('variant-A','variant-B','variant-C');document.body.classList.add('variant-'+variants[index]);document.querySelector('#variantLabel').textContent=labels[index];const u=new URL(location.href);u.searchParams.set('variant',variants[index]);try{history.replaceState(null,'',u)}catch{}}function cycle(n){index=(index+n+3)%3;renderVariant()}document.querySelector('#prev').onclick=()=>cycle(-1);document.querySelector('#next').onclick=()=>cycle(1);onkeydown=e=>{if(e.target.closest('input,textarea,[contenteditable]'))return;if(e.key==='ArrowLeft')cycle(-1);if(e.key==='ArrowRight')cycle(1)};renderVariant();
+document.querySelectorAll('.speed').forEach(b=>b.onclick=()=>{document.querySelectorAll('.speed').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelector('#announce').textContent='已选择 '+b.textContent+' · 原型仅预览控制条状态';});document.querySelector('#auto').onclick=function(){this.classList.toggle('active');this.textContent='一键连播：'+(this.classList.contains('active')?'开':'关');document.querySelector('#announce').textContent='连播状态预览 · 战斗引擎尚未接入';};let anim=[];document.querySelector('#play').onclick=function(){if(anim.length){anim.forEach(x=>x.cancel());anim=[];this.textContent='▶ 预览待机';return}document.querySelectorAll('.fighter').forEach(x=>anim.push(x.animate([{translate:'0 0'},{translate:'0 -4px'},{translate:'0 0'}],{duration:1400,iterations:Infinity})));this.textContent='Ⅱ 暂停待机';};document.querySelector('#mute').onclick=()=>document.querySelector('#announce').textContent='音效尚未接入 · 本页为静态布局与交互状态原型';
+</script><script data-source="assets/battle-engine.js">
+/* Pure deterministic battle rules. Animation is a consumer of these records. */
+(function(root){
+ 'use strict';
+ const CONFIG=Object.freeze({hp:100,heal:18,critRate:.1,critMultiplier:1.5,variance:.05,weaken:.3,maxActions:40});
+ const SKILLS=Object.freeze({
+  trip:{owner:0,name:'我烟呢？',power:[24],accuracy:1,times:[1600]},
+  scatter:{owner:0,name:'怎么全掉了',power:[9,9,9],accuracy:.95,times:[950,1400,1850]},
+  heal:{owner:0,name:'抽一口',heal:18,times:[1500]},
+  ultimate:{owner:0,name:'大烟杆子出离愤怒',power:[6,6,6,24],accuracy:1,times:[1200,1350,1500,2050],ultimate:true},
+  stab:{owner:1,name:'夏洛克三连刺',power:[9,9,9],accuracy:.95,times:[650,1200,1750]},
+  eat:{owner:1,name:'吃肠',heal:18,times:[1500]},
+  shove:{owner:1,name:'塞你嘴里',power:[15],accuracy:1,times:[1350],weaken:true},
+  dj:{owner:1,name:'肠控全场',power:[14,14,14],accuracy:1,times:[1050,1600,2150],ultimate:true}
+ });
+ const clone=value=>JSON.parse(JSON.stringify(value));
+ function random(seed){let s=seed>>>0;return()=>{s+=0x6D2B79F5;let t=s;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
+ function initial(){return [{name:'Mano',hp:CONFIG.hp,actions:0,last:null,ultimateUsed:false,weakened:false},{name:'通风橱',hp:CONFIG.hp,actions:0,last:null,ultimateUsed:false,weakened:false}];}
+ function legal(fighters,owner){const f=fighters[owner];if(f.hp<=0||fighters[1-owner].hp<=0)return[];return Object.keys(SKILLS).filter(key=>{const s=SKILLS[key];return s.owner===owner&&(s.ultimate?f.actions>=2&&!f.ultimateUsed:key!==f.last);});}
+ function choose(fighters,owner,rng){const self=fighters[owner],other=fighters[1-owner];return legal(fighters,owner).map(key=>{const s=SKILLS[key];let score;if(s.heal){const gain=Math.min(s.heal,CONFIG.hp-self.hp);score=gain*(self.hp<=35?1.9:self.hp<=60?1.3:.15);if(other.hp<=24)score*=.2;}else{const expected=s.power.reduce((a,b)=>a+b,0)*s.accuracy*(self.weakened?1-CONFIG.weaken:1);score=Math.min(expected,other.hp)+(expected>=other.hp?100:0);if(s.weaken&&!other.weakened)score+=7;}return{key,score:score*(.94+rng()*.12)};}).sort((a,b)=>b.score-a.score)[0]?.key;}
+ function action(fighters,owner,key,rng,index=0){
+  if(!legal(fighters,owner).includes(key))throw new Error('非法技能：'+key);
+  const skill=SKILLS[key],before=clone(fighters),next=clone(fighters),a=next[owner],b=next[1-owner],beats=[];
+  const wasWeakened=a.weakened;let critical=false,hit=true,total=0,recovered=0;
+  if(skill.heal){recovered=Math.min(skill.heal,CONFIG.hp-a.hp);a.hp+=recovered;beats.push({at:skill.times[0],kind:'heal',amount:recovered,hp:next.map(f=>f.hp),weakened:next.map(f=>f.weakened)});}
+  else{
+   hit=rng()<skill.accuracy;critical=hit&&rng()<CONFIG.critRate;const factor=(1+(rng()*2-1)*CONFIG.variance)*(critical?CONFIG.critMultiplier:1)*(wasWeakened?1-CONFIG.weaken:1);
+   a.weakened=false;
+   if(!hit)beats.push({at:skill.times[0],kind:'miss',amount:0,hp:next.map(f=>f.hp),weakened:next.map(f=>f.weakened)});
+   else for(let i=0;i<skill.power.length;i++){
+    if(b.hp<=0)break;const amount=Math.min(b.hp,Math.max(1,Math.round(skill.power[i]*factor)));b.hp-=amount;total+=amount;if(skill.weaken&&b.hp>0)b.weakened=true;
+    beats.push({at:skill.times[i],kind:'damage',amount,critical,hp:next.map(f=>f.hp),weakened:next.map(f=>f.weakened)});
+   }
+  }
+  a.actions++;a.last=key;if(skill.ultimate)a.ultimateUsed=true;
+  return {index,owner,skill:key,name:skill.name,before,after:next,beats,total,recovered,hit,critical,reduced:!skill.heal&&wasWeakened,duration:skill.ultimate?3000:2800};
+ }
+ function simulate(seed){const rng=random(seed);let fighters=initial(),turn=rng()<.5?0:1;const first=turn,events=[];while(events.length<CONFIG.maxActions&&fighters.every(f=>f.hp>0)){const key=choose(fighters,turn,rng),e=action(fighters,turn,key,rng,events.length);events.push(e);fighters=clone(e.after);turn=1-turn;}
+  const knockout=fighters.some(f=>f.hp===0);let winner;if(fighters[0].hp!==fighters[1].hp)winner=fighters[0].hp>fighters[1].hp?0:1;else winner=rng()<.5?0:1;
+  return{version:1,seed:seed>>>0,first,events,final:fighters,winner,reason:knockout?'击倒':fighters[0].hp===fighters[1].hp?'行动上限后同血量，种子抽签决胜':'行动上限，剩余血量决胜'};
+ }
+ function project(event,time){let hp=event.before.map(f=>f.hp),weakened=event.before.map(f=>f.weakened);for(const beat of event.beats){if(time<beat.at)break;hp=beat.hp;weakened=beat.weakened;}if(time>=event.duration){hp=event.after.map(f=>f.hp);weakened=event.after.map(f=>f.weakened);}return{hp:[...hp],weakened:[...weakened],fighters:clone(time>=event.duration?event.after:event.before)};}
+ const api={CONFIG,SKILLS,random,initial,legal,choose,action,simulate,project};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.FriendsBattle=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script><script data-source="assets/mano-skill.js">
+/* Throwaway skill choreography sample. No tournament simulation or AI. */
+(() => {
+ 'use strict';
+ const $=s=>document.querySelector(s);
+ const stage=$('.stage'), idle=$('.mano'), defender=$('.tong'), target=$('.fighter.right');
+ const announce=$('#announce');
+ const paths={pick:'assets/skills/mano-pick.png',fly:'assets/skills/mano-fly.png',vape:'assets/skills/mano-vape.png',phone:'assets/skills/mano-phone.png',keys:'assets/skills/mano-keys.png',scatter:'assets/skills/mano-scatter.png',heal:'assets/skills/mano-heal.png',ultimate:'assets/skills/mano-ultimate.png',stab:'assets/skills/tong-stab.png',eat:'assets/skills/tong-eat.png',shove:'assets/skills/tong-shove.png',dj:'assets/skills/tong-dj.png',ball:'assets/skills/disco-ball.png'};
+ const hits=Array.from({length:7},(_,i)=>`assets/fx/hits-2-${i+1}.png`);
+ const pulses=Array.from({length:4},(_,i)=>`assets/fx/pulse${i+1}.png`);
+ const toolbar=document.createElement('div');
+ toolbar.className='skill-demo-tools';
+ toolbar.innerHTML='<button id="demo-skill">▶ 我烟呢？完整演出</button><button id="demo-scatter">▶ 怎么全掉了</button><button id="demo-heal">▶ 抽一口</button><button id="demo-ultimate">▶ Mano 大招</button><button id="demo-stab">▶ 夏洛克三连刺</button><button id="demo-eat">▶ 吃肠</button><button id="demo-shove">▶ 塞你嘴里</button><button id="demo-dj">▶ 肠控全场</button><button id="demo-reset">重置预览</button><span class="skill-step" aria-live="polite">待命</span><small>普通技约 2.8 秒 / 大招 3 秒 · 可暂停、加速 · 回血角色从 60 HP 开始</small>';
+ stage.before(toolbar);
+ const layer=document.createElement('div');layer.className='skill-layer';layer.hidden=true;
+ layer.innerHTML=`<img class="skill-actor" src="${paths.pick}" alt="Mano 弯腰捡烟的动作"><img class="skill-vape" src="${paths.vape}" alt="掉落的果汁盒电子烟"><img class="skill-phone" src="${paths.phone}" alt="飞出的手机"><img class="skill-keys" src="${paths.keys}" alt="飞出的钥匙"><div class="skill-trail"></div><img class="skill-hit" src="${hits[0]}" alt="命中星芒"><div class="skill-damage">−24</div>`;
+ stage.append(layer);
+ const statusBadge=document.createElement('div');statusBadge.className='skill-status-badge';statusBadge.textContent='下次攻击伤害 −30%';statusBadge.hidden=true;stage.append(statusBadge);
+ const djFx=document.createElement('div');djFx.className='dj-effects';djFx.hidden=true;
+ djFx.innerHTML=`<div class="dj-beam dj-beam-left"></div><div class="dj-beam dj-beam-right"></div><img class="dj-ball" src="${paths.ball}" alt="旋转像素灯球"><div class="dj-floor-lights"></div>`;
+ stage.append(djFx);
+ const djBall=djFx.querySelector('.dj-ball'),beamLeft=djFx.querySelector('.dj-beam-left'),beamRight=djFx.querySelector('.dj-beam-right');
+ const waves=Array.from({length:3},(_,i)=>{const n=document.createElement('img');n.className='dj-wave';n.src=pulses[0];n.alt=`第${i+1}道节拍冲击波`;n.hidden=true;layer.append(n);return n;});
+ const actor=layer.querySelector('.skill-actor'),vape=layer.querySelector('.skill-vape'),hit=layer.querySelector('.skill-hit'),damage=layer.querySelector('.skill-damage'),trail=layer.querySelector('.skill-trail');
+ const step=toolbar.querySelector('.skill-step'),start=$('#demo-skill'),scatterStart=$('#demo-scatter'),healStart=$('#demo-heal'),ultimateStart=$('#demo-ultimate'),stabStart=$('#demo-stab'),eatStart=$('#demo-eat'),shoveStart=$('#demo-shove'),djStart=$('#demo-dj');
+ const phone=layer.querySelector('.skill-phone'),keys=layer.querySelector('.skill-keys'),projectiles=[vape,phone,keys];
+ const skillCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='Mano'&&c.dataset.skill==='我烟呢？');
+ skillCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.fly}" alt="扑飞动作缩略图">`);
+ const scatterCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='Mano'&&c.dataset.skill==='怎么全掉了');
+ scatterCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.scatter}" alt="电子烟、手机和钥匙散落的技能图">`);
+ const healCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='Mano'&&c.dataset.skill==='抽一口');
+ healCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.heal}" alt="Mano 举起果汁盒电子烟抽一口的技能图">`);
+ const ultimateCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='Mano'&&c.dataset.skill==='大烟杆子出离愤怒');
+ ultimateCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.ultimate}" alt="Mano 平地摔爆装备并飞撞的专属大招图">`);
+ const stabCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='通风橱'&&c.dataset.skill==='夏洛克三连刺');
+ stabCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.stab}" alt="通风橱手持肉肠向左前刺的动作图">`);
+ const eatCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='通风橱'&&c.dataset.skill==='吃肠');
+ eatCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.eat}" alt="通风橱举起肉肠咬一口的技能图">`);
+ const shoveCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='通风橱'&&c.dataset.skill==='塞你嘴里');
+ shoveCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.shove}" alt="通风橱上前把肉肠塞向对手的技能图">`);
+ const djCard=[...document.querySelectorAll('.card')].find(c=>c.dataset.owner==='通风橱'&&c.dataset.skill==='肠控全场');
+ djCard.insertAdjacentHTML('afterbegin',`<img class="skill-preview-thumb" src="${paths.dj}" alt="通风橱用肉肠在DJ台打碟的技能图">`);
+ const note=document.createElement('p');note.className='skill-demo-note';note.innerHTML='已完成独立演出：Mano 四招，以及通风橱「夏洛克三连刺」（9 × 3，算一次行动）、「吃肠」（恢复 18 HP）、「塞你嘴里」（15 伤害与减伤状态提示）、「肠控全场」（14 × 3 伤害）。攻击预览从满血开始，回血预览让对应角色从 60 HP 开始。大招按钮仅用于演出校验，正式解锁条件与每场一次规则待战斗引擎接入；「塞你嘴里」的减伤为状态演示，正式下次攻击结算待战斗引擎接入；两位角色八招的独立演出均已接入，完整对战与赛事尚未接入。<br><span class="skill-credits">命中与回血星芒：<a href="https://opengameart.org/content/warped-shooting-fx" target="_blank" rel="noopener">Warped Shooting Fx / ansimuz · CC0</a>，素材已存本地。</span>';
+ $('#decks').after(note);
+ const cache=new Map();let ready=false,error='',running=false,paused=false,speed=1,elapsed=0,last=0,raf=0,layout=null,muted=true,activeSkill='trip',hitCount=0,weakened=false,externalEvent=null,completion=null;
+ start.disabled=true;scatterStart.disabled=true;healStart.disabled=true;ultimateStart.disabled=true;stabStart.disabled=true;eatStart.disabled=true;shoveStart.disabled=true;djStart.disabled=true;start.textContent='加载动作素材…';
+ const load=src=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{cache.set(src,im);resolve()};im.onerror=()=>reject(new Error('素材加载失败：'+src));im.src=src;});
+ const assetsReady=Promise.all([...Object.values(paths),...hits,...pulses].map(load)).then(()=>{ready=true;start.disabled=false;scatterStart.disabled=false;healStart.disabled=false;ultimateStart.disabled=false;stabStart.disabled=false;eatStart.disabled=false;shoveStart.disabled=false;djStart.disabled=false;start.textContent='▶ 我烟呢？完整演出';return true;}).catch(e=>{error=e.message;start.textContent='素材缺失';announce.textContent=error;return false;});
+ const hp=$('.hp.right .name span'),bar=$('.hp.right .fill'),ownHp=$('.hp.left .name span'),ownBar=$('.hp.left .fill');
+ const previewButtons={trip:start,scatter:scatterStart,heal:healStart,ultimate:ultimateStart,stab:stabStart,eat:eatStart,shove:shoveStart,dj:djStart},previewCards={trip:skillCard,scatter:scatterCard,heal:healCard,ultimate:ultimateCard,stab:stabCard,eat:eatCard,shove:shoveCard,dj:djCard};
+ const move=(node,x,y)=>{node.style.left=`${x}px`;node.style.top=`${y}px`;};
+ const lerp=(a,b,t)=>a+(b-a)*t;
+ function setStep(label,text){if(step.textContent!==label){step.textContent=label;announce.textContent=text;}}
+ function measure(){const box=stage.getBoundingClientRect(),a=idle.getBoundingClientRect(),b=defender.getBoundingClientRect();return {x:a.left-box.left+a.width/2,y:a.top-box.top+a.height/2,tx:b.left-box.left+b.width/2,ty:b.top-box.top+b.height/2,w:a.width,h:a.height,tw:b.width,th:b.height};}
+ function restore(){idle.style.visibility='';idle.style.transform='';idle.style.filter='';target.style.transform='';defender.style.visibility='';defender.style.filter='';stage.style.transform='';hit.style.filter='';hit.style.width='';hit.style.height='';damage.style.color='';projectiles.forEach(p=>p.hidden=true);layer.classList.remove('ultimate');djFx.hidden=true;waves.forEach(n=>n.hidden=true);layer.hidden=true;}
+ function reset(){cancelAnimationFrame(raf);if(completion){const done=completion;completion=null;done({cancelled:true});}externalEvent=null;running=false;paused=false;elapsed=0;hitCount=0;weakened=false;statusBadge.hidden=true;restore();hp.textContent='100 / 100';bar.style.width='100%';ownHp.textContent='100 / 100';ownBar.style.width='100%';step.textContent='待命';start.textContent='▶ 我烟呢？完整演出';scatterStart.textContent='▶ 怎么全掉了';healStart.textContent='▶ 抽一口';ultimateStart.textContent='▶ Mano 大招';stabStart.textContent='▶ 夏洛克三连刺';eatStart.textContent='▶ 吃肠';shoveStart.textContent='▶ 塞你嘴里';djStart.textContent='▶ 肠控全场';$('#play').textContent='▶ 预览待机';announce.textContent='动作预览已重置 · 点击已完成的技能观看';}
+ function impactSound(){if(muted||(externalEvent&&!externalEvent.hit))return;try{const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;const ctx=audioCtx||(audioCtx=new AudioCtx());ctx.resume();const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='triangle';osc.frequency.setValueAtTime(140,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(45,ctx.currentTime+.1);gain.gain.setValueAtTime(.08,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.13);osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+.14);}catch{}}
+ let audioCtx=null,sounded=false;
+ function renderDJ(t){
+  const {x,y,tx,ty,w,tw,th}=layout,launches=[650,1200,1750],impacts=[1050,1600,2150];
+  actor.hidden=true;projectiles.forEach(p=>p.hidden=true);hit.hidden=true;damage.hidden=true;waves.forEach(p=>p.hidden=true);trail.style.opacity='0';idle.style.visibility='';idle.style.transform='';idle.style.filter='';target.style.transform='';stage.style.transform='';
+  const landed=impacts.filter(v=>t>=v).length;ownHp.textContent=`${100-landed*14} / 100`;ownBar.style.width=`${100-landed*14}%`;
+  if(landed>hitCount){for(let i=hitCount;i<landed;i++)djBeat(i);hitCount=landed;}
+  if(t<350){defender.style.visibility='';setStep('DJ 就位','通风橱使用了「肠控全场」！');return;}
+  const fade=t<650?(t-350)/300:t>2600?(3000-t)/400:1;
+  djFx.hidden=false;djFx.style.opacity=String(Math.max(0,fade));djBall.style.transform=`rotate(${Math.sin(t/300)*14}deg)`;djBall.style.filter=`hue-rotate(${Math.floor(t/400)*35}deg)`;beamLeft.style.transform=`rotate(${-20+Math.sin(t/450)*25}deg)`;beamRight.style.transform=`rotate(${20-Math.sin(t/500)*25}deg)`;
+  const color=Math.floor((t-350)/550)%3;beamLeft.style.background=['#55DBDC40','#E289DA40','#EAD26340'][color];beamRight.style.background=['#E289DA40','#EAD26340','#55DBDC40'][color];
+  defender.style.visibility='hidden';actor.hidden=false;actor.src=paths.dj;actor.alt='通风橱用肉肠在DJ台打碟';actor.style.width=`${tw*1.13}px`;actor.style.height=`${th}px`;move(actor,tx-tw*.565,ty-th*.5);actor.style.transform=`translateY(${Math.sin((t-350)/90)*3}px) rotate(${Math.sin(t/180)*2}deg)`;
+  if(t<650)setStep('灯球亮起','灯球亮起，通风橱掏出 DJ 台！');
+  for(let i=0;i<3;i++){const q=(t-launches[i])/400;if(q<0||q>=1)continue;const wave=waves[i];wave.hidden=false;wave.src=pulses[Math.min(3,Math.floor(q*4))];wave.style.width=`${180+q*35}px`;wave.style.height=`${90+q*18}px`;wave.style.transform='scaleX(-1)';wave.style.filter=`hue-rotate(${[0,65,145][i]}deg)`;move(wave,lerp(tx-tw*.35,x+w*.2,q)-100,lerp(ty+th*.1,y+[0,-15,15][i],q)-50);setStep(`第 ${i+1} 拍`,`肉肠打碟，第 ${i+1} 道节拍冲击波！`);}
+  const lastHit=impacts.findLastIndex(v=>t>=v&&t-v<300);
+  if(lastHit>=0){const q=(t-impacts[lastHit])/300;hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(q*7))];hit.style.filter=`hue-rotate(${[0,65,145][lastHit]}deg)`;move(hit,x+w*.2-64,y-64);damage.hidden=false;damage.textContent='−14';damage.style.opacity=String(1-q*.6);move(damage,x-w*.35,y-th*.25-q*35);idle.style.transform=`translate(${-Math.sin(q*25)*(1-q)*15}px,0)`;idle.style.filter=Math.floor(q*6)%2===0?'brightness(4)':'';stage.style.transform=`translateY(${Math.sin(q*23)*(1-q)*2}px)`;setStep(`${lastHit+1} / 3 节拍命中`,`第 ${lastHit+1} 拍命中！Mano −14 HP · 累计 ${landed*14} 点伤害`);}
+  if(t>=2500&&t<3000)setStep('灯光渐暗','三拍结束，合计 42 点伤害 · 灯球与舞台灯渐暗');
+  if(t>=3000){restore();setStep('演出结束','「肠控全场」演出结束 · Mano 剩余 58 HP · 灯光恢复');}
+ }
+ function djBeat(index){if(muted||(externalEvent&&!externalEvent.hit))return;try{const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;const ctx=audioCtx||(audioCtx=new AudioCtx());ctx.resume();const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime([130,155,180][index],ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(42,ctx.currentTime+.16);gain.gain.setValueAtTime(.1,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.2);osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+.22);}catch{}}
+ function renderShove(t){
+  const {x,y,tx,ty,w,tw,th}=layout;
+  actor.hidden=true;projectiles.forEach(p=>p.hidden=true);hit.hidden=true;damage.hidden=true;trail.style.opacity='0';idle.style.visibility='';idle.style.filter='';idle.style.transform='';target.style.transform='';
+  if(t>=1350){ownHp.textContent='85 / 100';ownBar.style.width='85%';weakened=true;statusBadge.hidden=false;if(!sounded){sounded=true;hitCount=1;impactSound();}}
+  if(t<350){defender.style.visibility='';setStep('塞肠准备','通风橱使用了「塞你嘴里」！');return;}
+  defender.style.visibility='hidden';actor.hidden=false;actor.src=paths.shove;actor.alt='通风橱把肉肠推向对手嘴边';actor.style.width=`${tw*1.08}px`;actor.style.height=`${th}px`;
+  const near=x+w*.52,attackX=tx-tw*.54,nearX=near-tw*.54;
+  if(t<1350){const q=(t-350)/1000,p=1-Math.pow(1-q,3);move(actor,lerp(attackX,nearX,p),ty-th*.5);actor.style.transform=`rotate(${-q*7}deg)`;setStep('上前塞肠','通风橱上前，把肉肠塞向 Mano 嘴边！');return;}
+  if(t<1950){const q=(t-1350)/600;move(actor,nearX+Math.sin(q*22)*3,ty-th*.5);actor.style.transform='rotate(-7deg)';idle.style.transform=`translate(${-Math.sin(q*18)*(1-q)*9}px,0)`;idle.style.filter=q<.4&&Math.floor(q*10)%2===0?'brightness(4)':'';if(q<.5){hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(q*14))];hit.style.filter='hue-rotate(85deg)';move(hit,x+w*.17-64,y-35-64);}damage.hidden=false;damage.textContent='−15';damage.style.opacity=String(1-q*.7);move(damage,x-w*.34,y-th*.27-q*30);setStep('命中并减伤','Mano −15 HP · 下次攻击伤害降低 30%（不叠加）');return;}
+  if(t<2550){const q=(t-1950)/600,p=1-Math.pow(1-q,3);move(actor,lerp(nearX,attackX,p),ty-th*.5);actor.style.transform=`rotate(${lerp(-7,0,p)}deg)`;setStep('收招归位','通风橱回到圆盘 · 减伤状态保留');return;}
+  restore();if(t<2800)setStep('状态展示','Mano 剩余 85 HP · 下次攻击伤害 −30%');else setStep('演出结束','「塞你嘴里」演出结束 · 15 伤害 + 下次攻击减伤状态提示');
+ }
+ function renderEat(t){
+  const {tx,ty,tw,th}=layout;
+  projectiles.forEach(p=>p.hidden=true);trail.style.opacity='0';hit.hidden=true;damage.hidden=true;actor.hidden=true;idle.style.visibility='';
+  const amount=Math.round(18*Math.max(0,Math.min(1,(t-1500)/400)));
+  hp.textContent=`${60+amount} / 100`;bar.style.width=`${60+amount}%`;
+  if(t<350){defender.style.visibility='';setStep('准备吃肠','通风橱使用了「吃肠」！');return;}
+  defender.style.visibility='hidden';actor.hidden=false;actor.src=paths.eat;actor.alt='通风橱把肉肠举到嘴边咬一口';actor.style.width=`${tw}px`;actor.style.height=`${th}px`;move(actor,tx-tw*.5,ty-th*.5);actor.style.transform=`translateY(${t<1500?Math.sin((t-350)/90)*2:0}px)`;
+  if(t<1500)setStep('咬一口','通风橱举起肉肠，咬了一口……');
+  if(t>=900&&t<2300){const q=(t-900)/1400,phase=Math.floor(q*4),local=(q*4)%1;hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(local*7))];hit.style.filter='hue-rotate(-65deg)';const positions=[[-.3,.12],[.18,-.24],[-.18,-.36],[.24,.06]];move(hit,tx+tw*positions[phase][0]-64,ty+th*positions[phase][1]-64);}
+  if(t>=1500){if(!sounded){sounded=true;healSound();}setStep('恢复生命','通风橱恢复了 18 HP！');damage.hidden=t>=2450;damage.textContent='+18';damage.style.color='#BDFF97';damage.style.opacity=String(1-Math.max(0,t-1800)/900);move(damage,tx-tw*.42,ty-th*.2-(t-1500)*.045);}
+  if(t>=2300&&t<2800){actor.hidden=true;defender.style.visibility='';setStep('恢复完成','通风橱 HP：60 → 78 / 100 · 回到待机');}
+  if(t>=2800){restore();setStep('演出结束','「吃肠」演出结束 · 通风橱恢复 18 HP，当前 78 / 100');}
+ }
+ function renderStab(t){
+  const {x,y,tx,ty,w,tw,th}=layout,impacts=[650,1200,1750];
+  actor.hidden=true;hit.hidden=true;damage.hidden=true;trail.style.opacity='0';projectiles.forEach(p=>p.hidden=true);idle.style.visibility='';idle.style.transform='';idle.style.filter='';target.style.transform='';defender.style.filter='';
+  const landed=impacts.filter(v=>t>=v).length;ownHp.textContent=`${100-landed*9} / 100`;ownBar.style.width=`${100-landed*9}%`;
+  if(landed>hitCount){for(let i=hitCount;i<landed;i++)impactSound();hitCount=landed;}
+  if(t<300){defender.style.visibility='';setStep('三连刺准备','通风橱使用了「夏洛克三连刺」！');return;}
+  defender.style.visibility='hidden';actor.hidden=false;actor.src=paths.stab;actor.alt='通风橱用肉肠向左前刺';actor.style.width=`${tw*1.08}px`;actor.style.height=`${th}px`;
+  let pulse=0,stroke=0;
+  if(t>=400&&t<2050){stroke=Math.min(2,Math.floor((t-400)/550));const q=((t-400)%550)/550;pulse=q<.455?q/.455:(1-q)/.545;setStep(`第 ${stroke+1} 刺`,['第一刺！','回收，再刺！','第三刺，收招！'][stroke]);}
+  const reach=Math.max(0,tx-x-w*.6),cx=tx-reach*Math.max(0,pulse);
+  move(actor,cx-tw*.54,ty-th*.5);actor.style.transform=`rotate(${-pulse*5}deg)`;
+  if(pulse>.15){trail.style.opacity=String(pulse*.8);move(trail,cx+tw*.22,ty+th*.16);}
+  const lastHit=impacts.findLastIndex(v=>t>=v&&t-v<260);
+  if(lastHit>=0){const q=(t-impacts[lastHit])/260;hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(q*7))];move(hit,x+w*.25-64,y+15-64);damage.hidden=false;damage.textContent='−9';damage.style.opacity=String(1-q*.6);move(damage,x-w*.35,y-th*.25-q*35);idle.style.transform=`translate(${-Math.sin(q*24)*(1-q)*12}px,0)`;idle.style.filter=Math.floor(q*6)%2===0?'brightness(4)':'';setStep(`${lastHit+1} / 3 命中`,`第 ${lastHit+1} 刺命中！Mano −9 HP · 累计 ${landed*9} 点伤害`);}
+  if(t>=2050&&t<2800){setStep('回到圆盘','三连刺结束 · 合计 27 点伤害，算一次行动');actor.hidden=true;defender.style.visibility='';}
+  if(t>=2800){restore();setStep('演出结束','「夏洛克三连刺」演出结束 · Mano 剩余 73 HP');}
+ }
+ function renderUltimate(t){
+  const {x,y,tx,ty,w,h}=layout;const launches=[700,850,1000],lands=[1200,1350,1500];
+  projectiles.forEach(p=>p.hidden=true);actor.hidden=true;hit.hidden=true;damage.hidden=true;trail.style.opacity='0';target.style.transform='';defender.style.filter='';stage.style.transform='';
+  const gearHits=lands.filter(v=>t>=v).length,bodyHit=t>=2050,total=gearHits*6+(bodyHit?24:0),n=gearHits+(bodyHit?1:0);
+  hp.textContent=`${100-total} / 100`;bar.style.width=`${100-total}%`;
+  if(n>hitCount){for(let i=hitCount;i<n;i++)impactSound();hitCount=n;}
+  if(t<450){idle.style.visibility='';setStep('大招发动','Mano 使用了「大烟杆子出离愤怒」！');return;}
+  idle.style.visibility='hidden';actor.hidden=false;actor.src=paths.pick;actor.style.width=`${w*1.06}px`;actor.style.height=`${h*.88}px`;move(actor,x-w*.53,y-h*.32);actor.style.transform=`rotate(${Math.min(1,(t-450)/1050)*22}deg)`;
+  if(t<1050)setStep('平地摔','Mano 脚下一滑，随身装备全部脱手！');
+  for(let i=0;i<3;i++){const q=(t-launches[i])/500;if(q<0||q>=1)continue;const item=projectiles[i],size=[66,72,74][i];item.hidden=false;item.style.width=`${size}px`;item.style.height=`${size*1.2}px`;move(item,lerp(x+30,tx-w*.18,q)-size/2,lerp(y+30,ty+[-35,0,35][i],q)-Math.sin(q*Math.PI)*[90,120,100][i]-size*.6);item.style.transform=`rotate(${q*[540,-480,600][i]}deg)`;setStep('装备爆飞','电子烟、手机、钥匙爆飞，连续命中！');}
+  if(t>=1500&&t<2050){const q=(t-1500)/550,p=q*q;actor.src=paths.fly;actor.style.width=`${w*1.25}px`;actor.style.height=`${h*.86}px`;const cx=lerp(x,tx-w*.3,p);move(actor,cx-w*.625,lerp(y,ty,q)-h*.43-Math.sin(q*Math.PI)*30);actor.style.transform=`rotate(${lerp(-8,12,q)}deg)`;trail.style.opacity='1';move(trail,cx-w*.7,ty);setStep('本人滑撞','装备先到，Mano 紧随其后撞了过去！');}
+  const lastGear=lands.findLastIndex(v=>t>=v&&t-v<150);
+  if(lastGear>=0){const q=(t-lands[lastGear])/150;hit.hidden=false;hit.style.width='128px';hit.style.height='128px';hit.src=hits[Math.min(6,Math.floor(q*7))];move(hit,tx-w*.18-64,ty+[-35,0,35][lastGear]-64);damage.hidden=false;damage.textContent='−6';damage.style.opacity='1';move(damage,tx+12,ty-h*.3-q*25);target.style.transform=`translate(${Math.sin(q*20)*8}px,0)`;defender.style.filter=q<.5?'brightness(4)':'';}
+  if(t>=2050&&t<2450){const q=(t-2050)/400;actor.src=paths.fly;actor.style.width=`${w*1.25}px`;actor.style.height=`${h*.86}px`;move(actor,tx-w*.925-q*15,ty-h*.43+q*12);actor.style.transform=`rotate(${12+q*18}deg)`;hit.hidden=false;hit.style.width='192px';hit.style.height='192px';hit.src=hits[Math.min(6,Math.floor(q*7))];move(hit,tx-w*.15-96,ty-96);damage.hidden=false;damage.textContent='−24';damage.style.opacity=String(1-q*.5);move(damage,tx+18,ty-h*.35-q*40);target.style.transform=`translate(${Math.sin(q*30)*(1-q)*21}px,0)`;defender.style.filter=Math.floor(q*8)%2===0?'brightness(5)':'';stage.style.transform=`translate(${Math.sin(q*31)*(1-q)*5}px,${Math.cos(q*24)*(1-q)*2}px)`;setStep('重击命中','本人滑撞 −24！大招累计造成 42 点伤害。');}
+  if(t>=2450&&t<3000){const q=(t-2450)/550,p=1-Math.pow(1-q,3);actor.src=paths.pick;actor.style.width=`${w*1.06}px`;actor.style.height=`${h*.88}px`;move(actor,lerp(tx-w*.925-15,x-w*.53,p),lerp(ty-h*.43+12,y-h*.32,p));actor.style.transform=`rotate(${lerp(30,0,p)}deg)`;setStep('大招收尾','装备三连击 + 本人滑撞 · 总伤害 42');}
+  if(t>=3000){restore();setStep('演出结束','「大烟杆子出离愤怒」演出结束 · 通风橱剩余 58 HP');}
+ }
+ function healSound(){if(muted)return;try{const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;const ctx=audioCtx||(audioCtx=new AudioCtx());ctx.resume();const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(420,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(840,ctx.currentTime+.2);gain.gain.setValueAtTime(.05,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.28);osc.connect(gain);gain.connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+.3);}catch{}}
+ function renderHeal(t){
+  const {x,y,w,h}=layout;
+  projectiles.forEach(p=>p.hidden=true);trail.style.opacity='0';hit.hidden=true;damage.hidden=true;actor.hidden=true;
+  const amount=Math.round(18*Math.max(0,Math.min(1,(t-1500)/400)));
+  ownHp.textContent=`${60+amount} / 100`;ownBar.style.width=`${60+amount}%`;
+  if(t<350){idle.style.visibility='';setStep('准备恢复','Mano 使用了「抽一口」！');return;}
+  idle.style.visibility='hidden';actor.hidden=false;actor.src=paths.heal;actor.alt='Mano 把果汁盒电子烟举到嘴边';actor.style.width=`${w}px`;actor.style.height=`${h}px`;move(actor,x-w*.5,y-h*.5);actor.style.transform=`translateY(${-Math.sin(Math.min(1,(t-350)/1800)*Math.PI)*3}px)`;
+  if(t<1500)setStep('抽一口','Mano 举起电子烟，抽了一口……');
+  if(t>=900&&t<2300){const q=(t-900)/1400,phase=Math.floor(q*4),local=(q*4)%1;hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(local*7))];hit.style.filter='hue-rotate(-65deg)';const positions=[[-.35,.12],[.17,-.25],[-.2,-.38],[.25,.06]];move(hit,x+w*positions[phase][0]-64,y+h*positions[phase][1]-64);}
+  if(t>=1500){if(!sounded){sounded=true;healSound();}setStep('恢复生命','Mano 恢复了 18 HP！');damage.hidden=t>=2450;damage.textContent='+18';damage.style.color='#BDFF97';damage.style.opacity=String(1-Math.max(0,t-1800)/900);move(damage,x+w*.25,y-h*.18-(t-1500)*.045);}
+  if(t>=2300&&t<2800){actor.hidden=true;idle.style.visibility='';setStep('恢复完成','Mano HP：60 → 78 / 100 · 回到待机');}
+  if(t>=2800){restore();setStep('演出结束','「抽一口」演出结束 · Mano 恢复 18 HP，当前 78 / 100');}
+ }
+ function renderScatter(t){
+  const {x,y,tx,ty,w,h}=layout;
+  actor.hidden=true;hit.hidden=true;damage.hidden=true;trail.style.opacity='0';projectiles.forEach(p=>p.hidden=true);idle.style.visibility='';target.style.transform='';defender.style.filter='';stage.style.transform='';
+  const launches=[350,800,1250],lands=launches.map(v=>v+600),names=['电子烟','手机','钥匙'];
+  const landed=lands.filter(v=>t>=v).length;
+  hp.textContent=`${100-landed*9} / 100`;bar.style.width=`${100-landed*9}%`;
+  if(landed>hitCount){for(let i=hitCount;i<landed;i++)impactSound();hitCount=landed;}
+  idle.style.transform=t<2150?`translateY(${Math.sin(t/110)*3}px) rotate(${Math.sin(t/170)*7}deg)`:'';
+  if(t<350)setStep('手忙脚乱','Mano 使用了「怎么全掉了」！');
+  for(let i=0;i<3;i++){
+   const q=(t-launches[i])/600;if(q<0||q>=1)continue;
+   const item=projectiles[i];item.hidden=false;
+   const size=[52,58,62][i];item.style.width=`${size}px`;item.style.height=`${size*1.22}px`;
+   const sx=x+28,sy=y+30+i*12,ex=tx-w*.18,ey=ty+[-30,15,45][i];
+   move(item,lerp(sx,ex,q)-size/2,lerp(sy,ey,q)-Math.sin(q*Math.PI)*[70,100,85][i]-size*.61);
+   item.style.transform=`rotate(${[-30,25,-45][i]+q*[420,-330,500][i]}deg)`;
+   setStep(names[i]+'飞出',`${names[i]}脱手飞向通风橱！`);
+  }
+  const lastHit=lands.findLastIndex(v=>t>=v&&t-v<300);
+  if(lastHit>=0){const q=(t-lands[lastHit])/300;hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(q*7))];move(hit,tx-w*.18-64,ty+[-30,15,45][lastHit]-64);damage.hidden=false;damage.textContent='−9';damage.style.opacity=String(1-q*.65);move(damage,tx+15,ty-h*.35-q*30);target.style.transform=`translate(${Math.sin(q*24)*(1-q)*12}px,0)`;defender.style.filter=Math.floor(q*6)%2===0?'brightness(4)':'';setStep(`${lastHit+1} / 3 命中`,`${names[lastHit]}命中！−9 HP · 累计 ${landed*9} 点伤害`);}
+  if(t>=2150&&t<2800)setStep('装备落了一地','三段命中，合计 27 点伤害 · Mano 稳住身形');
+  if(t>=2800){restore();setStep('演出结束','「怎么全掉了」演出结束 · 通风橱剩余 73 HP · 可再次点击重播');}
+ }
+ function renderPreviewFrame(t){
+  hit.style.filter='';damage.style.color='';
+  if(activeSkill==='dj'){renderDJ(t);return;}
+  if(activeSkill==='shove'){renderShove(t);return;}
+  if(activeSkill==='eat'){renderEat(t);return;}
+  if(activeSkill==='stab'){renderStab(t);return;}
+  if(activeSkill==='ultimate'){renderUltimate(t);return;}
+  if(activeSkill==='heal'){renderHeal(t);return;}
+  if(activeSkill==='scatter'){renderScatter(t);return;}
+  const {x,y,tx,ty,w,h}=layout;const floor=y+h*.43;
+  actor.hidden=true;projectiles.forEach(p=>p.hidden=true);hit.hidden=true;damage.hidden=true;damage.textContent='−24';trail.style.opacity='0';target.style.transform='';defender.style.filter='';stage.style.transform='';
+  vape.style.width='28px';vape.style.height='38px';
+  if(t<300){setStep('掉烟','Mano 的电子烟掉了！');idle.style.visibility='';vape.hidden=false;move(vape,x+38,lerp(y+5,floor-28,t/300));vape.style.transform=`rotate(${t/5}deg)`;return;}
+  if(t>=1600){hp.textContent='76 / 100';bar.style.width='76%';if(!sounded){sounded=true;impactSound();}}
+  idle.style.visibility='hidden';actor.hidden=false;actor.style.width=`${w*1.06}px`;actor.style.height=`${h*.88}px`;
+  if(t<950){setStep('低头捡','Mano 低头捡烟……脚下一滑！');actor.src=paths.pick;move(actor,x-w*.53,y-h*.32);actor.style.transform=`rotate(${lerp(0,9,(t-300)/650)}deg)`;return;}
+  actor.src=paths.fly;actor.style.width=`${w*1.2}px`;actor.style.height=`${h*.85}px`;
+  if(t<1600){setStep('扑飞','Mano 使用了「我烟呢？」！');const q=(t-950)/650,p=q*q;const cx=lerp(x,tx-w*.37,p),cy=lerp(y,ty,p)-Math.sin(q*Math.PI)*45;move(actor,cx-w*.6,cy-h*.43);actor.style.transform=`rotate(${lerp(-14,8,q)}deg)`;trail.style.opacity=String(Math.min(1,q*3));move(trail,cx-w*.65,cy);return;}
+  if(t<2050){setStep('撞击','撞中了！通风橱受到 24 点伤害。');if(!sounded){sounded=true;impactSound();}const q=(t-1600)/450;move(actor,tx-w*.97-q*18,ty-h*.43+q*10);actor.style.transform=`rotate(${8+q*10}deg)`;target.style.transform=`translate(${Math.sin(q*Math.PI*7)*(1-q)*15}px,0)`;defender.style.filter=Math.floor(q*8)%2===0?'brightness(4)':'';stage.style.transform=`translate(${Math.sin(q*28)*(1-q)*3}px,0)`;hit.hidden=false;hit.src=hits[Math.min(6,Math.floor(q*7))];move(hit,tx-w*.24-64,ty-64);damage.hidden=false;move(damage,tx+12,ty-h*.4-q*45);damage.style.opacity=String(1-q*.5);hp.textContent='76 / 100';bar.style.width='76%';return;}
+  if(t<2800){setStep('归位','通风橱 HP：76 / 100 · Mano 回到原位');const q=(t-2050)/750,p=1-Math.pow(1-q,3);actor.src=paths.pick;actor.style.width=`${w*1.06}px`;actor.style.height=`${h*.88}px`;move(actor,lerp(tx-w*.97-18,x-w*.53,p),lerp(ty-h*.43+10,y-h*.32,p));actor.style.transform=`rotate(${lerp(18,0,p)}deg)`;return;}
+  restore();setStep('演出结束','「我烟呢？」演出结束 · 通风橱剩余 76 HP · 可再次点击重播');
+ }
+ function tick(now){if(!running)return;if(!paused)elapsed+=Math.min(now-last,80)*speed;last=now;const duration=externalEvent?.duration||(['ultimate','dj'].includes(activeSkill)?3000:2800);render(Math.min(elapsed,duration));if(elapsed>=duration){running=false;previewButtons[activeSkill].textContent='↻ 重播「'+previewCards[activeSkill].dataset.skill+'」';$('#play').textContent='▶ 预览待机';if(completion){const done=completion;completion=null;done({cancelled:false});}return;}raf=requestAnimationFrame(tick);}
+ async function play(kind='trip',event=null,startAt=0){if(!previewButtons[kind])return;if(running){if(activeSkill===kind&&!event)return;reset();}if(!ready){const ok=await assetsReady;if(!ok){announce.textContent=error;return;}}reset();externalEvent=event;elapsed=Math.max(0,Math.min(startAt,event?.duration||0));activeSkill=kind;document.querySelectorAll('.fighter').forEach(n=>n.getAnimations().forEach(a=>a.cancel()));document.querySelectorAll('.selected').forEach(c=>c.classList.remove('selected'));previewCards[kind].classList.add('selected');layout=measure();layer.hidden=false;if(kind==='ultimate')layer.classList.add('ultimate');running=true;sounded=false;last=performance.now();previewButtons[kind].textContent='演出中…';$('#play').textContent='Ⅱ 暂停演出';render(elapsed);raf=requestAnimationFrame(tick);}
+ start.onclick=()=>play('trip');scatterStart.onclick=()=>play('scatter');healStart.onclick=()=>play('heal');ultimateStart.onclick=()=>play('ultimate');stabStart.onclick=()=>play('stab');eatStart.onclick=()=>play('eat');shoveStart.onclick=()=>play('shove');djStart.onclick=()=>play('dj');$('#demo-reset').onclick=reset;
+ skillCard.onclick=()=>{document.querySelectorAll('.selected').forEach(c=>c.classList.remove('selected'));skillCard.classList.add('selected');play();};
+ scatterCard.onclick=()=>play('scatter');
+ healCard.onclick=()=>play('heal');
+ ultimateCard.onclick=()=>play('ultimate');
+ stabCard.onclick=()=>play('stab');eatCard.onclick=()=>play('eat');shoveCard.onclick=()=>play('shove');djCard.onclick=()=>play('dj');
+ document.querySelectorAll('.card').forEach(c=>{if(Object.values(previewCards).includes(c))return;const previous=c.onclick;c.onclick=()=>{if(running)reset();previous();};});
+ document.querySelectorAll('.speed').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.speed').forEach(x=>x.classList.remove('active'));b.classList.add('active');speed=Number.parseFloat(b.textContent);if(!running)announce.textContent=`演出速度 ${speed}× · 点击已完成的技能观看`;};});
+ function render(t){
+  renderPreviewFrame(t);
+  if(!externalEvent)return;
+  const e=externalEvent,p=window.FriendsBattle.project(e,t);
+  ownHp.textContent=`${p.hp[0]} / 100`;ownBar.style.width=`${p.hp[0]}%`;hp.textContent=`${p.hp[1]} / 100`;bar.style.width=`${p.hp[1]}%`;
+  weakened=p.weakened[0];statusBadge.hidden=!p.weakened.some(Boolean);statusBadge.textContent='下次攻击伤害 −30%';
+  const beat=e.beats.findLast(b=>b.at<=t),recent=beat&&t-beat.at<450;
+  if(recent){damage.hidden=false;damage.style.opacity='1';damage.textContent=beat.kind==='miss'?'未命中':(beat.kind==='heal'?'+':'−')+beat.amount+(beat.critical?' 暴击':'');if(beat.kind==='heal')damage.style.color='#BDFF97';}
+  else damage.hidden=true;
+  if(!recent||beat.kind==='miss'){hit.hidden=true;idle.style.filter='';defender.style.filter='';}
+  const who=e.before[e.owner].name;
+  announce.textContent=`第 ${e.index+1} 次行动 · ${who} 使用了「${e.name}」！`+(beat?(beat.kind==='miss'?' 未命中':beat.kind==='heal'?` 恢复 ${e.recovered} HP`:` 累计伤害 ${e.beats.filter(b=>b.at<=t).reduce((n,b)=>n+b.amount,0)}${e.critical?' · 暴击':''}${e.reduced?' · 受减伤影响':''}`):'');
+ }
+ async function playBattle(event,options={}){
+  if(!await assetsReady)throw new Error(error||'素材加载失败');
+  await play(event.skill,event,options.startAt||0);
+  return new Promise(resolve=>{completion=resolve;});
+ }
+ const previousPlay=$('#play').onclick;
+ $('#play').onclick=function(){if(!running){previousPlay.call(this);return;}paused=!paused;this.textContent=paused?'▶ 继续演出':'Ⅱ 暂停演出';};
+ $('#mute').textContent='预览音效：关';$('#mute').onclick=function(){muted=!muted;this.textContent='预览音效：'+(muted?'关':'开');};
+ function equalize(){const cards=[...document.querySelectorAll('.card')];cards.forEach(c=>c.style.height='auto');const max=Math.ceil(Math.max(...cards.map(c=>c.offsetHeight)));cards.forEach(c=>c.style.height=`${max}px`);}
+ let resizeFrame=0;function resize(){if(running){if(externalEvent)layout=measure();else reset();}cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(equalize);}
+ window.addEventListener('resize',resize);document.fonts.ready.then(equalize);new MutationObserver(resize).observe(document.body,{attributes:true,attributeFilter:['class']});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){paused=true;$('#play').textContent='▶ 继续演出';}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&running){if(externalEvent){paused=true;$('#play').textContent='▶ 继续对战';}else reset();}});
+ const oldAuto=$('#auto').onclick;$('#auto').onclick=function(){oldAuto.call(this);if(this.classList.contains('active'))announce.textContent='完整赛事连播尚未接入 · 两位角色共八招的独立演出已接入，完整赛事连播待战斗引擎接入';};
+ window.ManoSkillPreview={play,reset,playBattle,ready:assetsReady,finishBattle(){if(!running||!externalEvent)return;cancelAnimationFrame(raf);elapsed=externalEvent.duration;render(elapsed);running=false;if(completion){const done=completion;completion=null;done({cancelled:false});}},setPaused(value){paused=Boolean(value);last=performance.now();},setSpeed(value){speed=value;},get state(){return {running,paused,speed,elapsed,ready,activeSkill,hitCount,weakened,battle:!!externalEvent}}};
+})();
+
+</script><script data-source="assets/battle-game.js">
+/* One complete match. Same seeded result regardless of playback controls. */
+(() => {
+ 'use strict';
+ const $=s=>document.querySelector(s),engine=window.FriendsBattle,renderer=window.ManoSkillPreview;
+ const storageKey='jumpsea-match-v1',cards=[...document.querySelectorAll('.card')];
+ const ui=document.createElement('section');ui.className='match-controls';
+ ui.innerHTML='<div class="match-buttons"><button id="match-start">▶ 开始自动对战</button><button id="match-replay">同局重播</button><button id="match-skip">跳过本招</button><button id="match-new">重开一局</button><button id="match-resume" hidden>继续上次对战</button><button id="match-preview">技能预览</button></div><div id="match-info" aria-live="polite"></div>';
+ $('.stage').before(ui);
+ const result=document.createElement('div');result.className='match-result';result.hidden=true;$('#decks').before(result);
+ const logSection=document.createElement('section');logSection.className='match-log';logSection.innerHTML='<h2>对战日志</h2><ol id="match-log-list" aria-live="polite"></ol><p id="match-storage"></p>';$('#decks').after(logSection);
+ const names=['Mano','通风橱'],buttons={start:$('#match-start'),replay:$('#match-replay'),skip:$('#match-skip'),fresh:$('#match-new'),resume:$('#match-resume'),preview:$('#match-preview')};
+ let mode='battle',match=null,cursor=0,playing=false,paused=false,speed=1,epoch=0,offset=0,saved=null,finished=false;
+ const originalPlay=$('#play').onclick;
+ const freshSeed=()=>{if(window.crypto?.getRandomValues){const a=new Uint32Array(1);window.crypto.getRandomValues(a);return a[0];}return(Date.now()^Math.floor(Math.random()*4294967296))>>>0;};
+ function storageRead(){try{const value=JSON.parse(localStorage.getItem(storageKey)||'null');if(value?.version===1&&Number.isInteger(value.seed)&&value.seed>=0&&value.seed<=4294967295&&Number.isInteger(value.cursor)&&value.cursor>=0&&Number.isFinite(value.offset))return value;}catch{}return null;}
+ function save(){if(!match||mode!=='battle')return;try{const active=renderer.state.battle&&renderer.state.running;localStorage.setItem(storageKey,JSON.stringify({version:1,seed:match.seed,cursor,offset:active?renderer.state.elapsed:offset,speed,finished}));$('#match-storage').textContent='进度已保存在此浏览器；重新打开可继续。';}catch{$('#match-storage').textContent='此浏览器未能保存本地进度；当前对战仍可正常播放。';}}
+ function log(text){const li=document.createElement('li');li.textContent=text;$('#match-log-list').append(li);$('#match-log-list').scrollTop=$('#match-log-list').scrollHeight;}
+ function summary(e){const a=names[e.owner],b=names[1-e.owner];return`${e.index+1}. ${a} 使用「${e.name}」：`+(!e.hit?'未命中':e.recovered?`恢复 ${e.recovered} HP`:`对 ${b} 造成 ${e.total} 点伤害${e.critical?'（暴击）':''}${e.reduced?'（受 30% 减伤影响）':''}`)+(e.skill==='shove'&&e.after[1-e.owner].weakened?'；附加下次攻击伤害 −30%':'')+`。HP ${e.after[0].hp} : ${e.after[1].hp}`;}
+ function setMode(value){mode=value;document.body.classList.toggle('battle-mode',value==='battle');ui.hidden=value!=='battle';logSection.hidden=value!=='battle';document.querySelectorAll('.skill-demo-note').forEach(n=>n.hidden=value==='battle');document.querySelectorAll('.switcher').forEach(n=>n.hidden=value==='battle');cards.forEach(c=>{c.disabled=value==='battle';if(value!=='battle')c.classList.remove('unavailable');});$('#auto').textContent=value==='battle'?'自动对战':'返回对战';}
+ function paint(fighters,owner=null){for(let i=0;i<2;i++){const side=i===0?'left':'right';$(`.hp.${side} .name span`).textContent=`${fighters[i].hp} / 100`;$(`.hp.${side} .fill`).style.width=fighters[i].hp+'%';}
+  const badges=document.querySelectorAll('.skill-status-badge');badges.forEach(n=>{n.hidden=!fighters.some(f=>f.weakened);});
+  const heads=document.querySelectorAll('.deck-head small');fighters.forEach((f,i)=>{if(heads[i])heads[i].textContent=`已行动 ${f.actions} 次 · 大招${f.ultimateUsed?'已使用':f.actions>=2?'可用':`还需 ${2-f.actions} 次行动`}`;});
+  cards.forEach(c=>{const i=names.indexOf(c.dataset.owner),key=Object.keys(engine.SKILLS).find(k=>engine.SKILLS[k].owner===i&&engine.SKILLS[k].name===c.dataset.skill);c.classList.toggle('unavailable',!engine.legal(fighters,i).includes(key));c.classList.toggle('acting-owner',owner===i);});
+ }
+ function controls(){buttons.start.textContent=playing?(paused?'▶ 继续对战':'Ⅱ 暂停对战'):finished?'↻ 再看这场':'▶ 开始自动对战';buttons.skip.disabled=!playing;$('#play').textContent=playing?(paused?'▶ 继续对战':'Ⅱ 暂停对战'):'▶ 开始对战';$('#match-info').textContent=match?`对战种子 ${match.seed} · ${names[match.first]} 先手 · ${finished?'对战结束':`行动 ${Math.min(cursor+1,match.events.length)}`}${playing&&paused?' · 已暂停':''}`:'等待开始';}
+ function clearVisuals(){document.querySelectorAll('.fighter').forEach(f=>{f.style.opacity='';f.style.filter='';});result.hidden=true;}
+ function interrupt(){epoch++;playing=false;paused=false;renderer.reset();clearVisuals();}
+ function prepare(seed,at=0,elapsed=0){interrupt();setMode('battle');match=engine.simulate(seed);cursor=Math.max(0,Math.min(at,match.events.length));offset=Math.max(0,Math.min(elapsed,match.events[cursor]?.duration||0));finished=cursor===match.events.length;$('#match-log-list').textContent='';log(`随机先手：${names[match.first]}。双方 HP 100，轮流行动。`);for(let i=0;i<cursor;i++)log(summary(match.events[i]));paint(cursor?match.events[cursor-1].after:engine.initial());if(cursor<match.events.length&&offset){const p=engine.project(match.events[cursor],offset),fs=match.events[cursor].before.map((f,i)=>({...f,hp:p.hp[i],weakened:p.weakened[i]}));paint(fs);}controls();if(finished)finish();}
+ function finish(){playing=false;paused=false;finished=true;offset=0;paint(match.final);result.hidden=false;result.textContent=`${names[match.winner]} 获胜！ · ${match.reason}`;$('#announce').textContent=`${names[match.winner]} 获胜！`;const loser=$('.fighter.'+(match.winner===0?'right':'left'));loser.style.opacity='.35';loser.style.filter='grayscale(1)';log(`胜者：${names[match.winner]}。${match.reason}。`);controls();save();}
+ async function run(){if(mode!=='battle')setMode('battle');if(playing){togglePause();return;}if(finished)prepare(match.seed);if(!await renderer.ready){$('#announce').textContent='动作素材未能加载，请保留完整 assets 文件夹后刷新。';return;}
+  playing=true;paused=false;const token=++epoch;renderer.setSpeed(speed);controls();
+  try{while(token===epoch&&cursor<match.events.length){const e=match.events[cursor];paint(e.before,e.owner);save();const pending=renderer.playBattle(e,{startAt:offset});const outcome=await pending;if(token!==epoch||outcome.cancelled)return;offset=0;paint(e.after);log(summary(e));cursor++;save();controls();}if(token===epoch)finish();}
+  catch(error){if(token!==epoch)return;playing=false;paused=false;$('#announce').textContent='对战播放中断：'+error.message;controls();save();}
+ }
+ function togglePause(){if(!playing){run();return;}paused=!paused;renderer.setPaused(paused);controls();save();}
+ buttons.start.onclick=()=>run();buttons.replay.onclick=()=>{prepare(match.seed);run();};buttons.fresh.onclick=()=>{prepare(freshSeed());save();run();};buttons.skip.onclick=()=>{if(!playing)return;paused=false;renderer.setPaused(false);renderer.finishBattle();controls();};
+ buttons.preview.onclick=()=>{save();interrupt();setMode('preview');$('#announce').textContent='技能预览模式 · 点击任一技能；点击顶部“返回对战”继续游戏';document.querySelectorAll('.deck-head small').forEach(n=>n.textContent='独立技能预览');};
+ $('#play').onclick=function(){if(mode==='preview'){originalPlay.call(this);return;}togglePause();};$('#auto').onclick=()=>{if(mode==='preview')prepare(match.seed,cursor,offset);run();};
+ document.querySelectorAll('.speed').forEach(b=>{const previous=b.onclick;b.onclick=()=>{previous.call(b);speed=Number.parseFloat(b.textContent);renderer.setSpeed(speed);save();};});
+ buttons.resume.onclick=()=>{if(!saved)return;speed=[1,2,4,8].includes(saved.speed)?saved.speed:1;prepare(saved.seed,saved.cursor,saved.offset);document.querySelectorAll('.speed').forEach(b=>b.classList.toggle('active',Number.parseFloat(b.textContent)===speed));buttons.resume.hidden=true;run();};
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing){paused=true;renderer.setPaused(true);controls();save();}});window.addEventListener('beforeunload',save);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&playing){paused=true;renderer.setPaused(true);controls();save();}});
+ saved=storageRead();prepare(freshSeed());if(saved){buttons.resume.hidden=false;$('#match-storage').textContent='发现上次记录，点击“继续上次对战”恢复。';}
+ $('.round b').textContent='样板实战 · BO1';$('.prototype').textContent='真实结算 · 先跑通两人完整对战';$('.foot').textContent='随机先手 / 轮流行动 / 普通技不可连续重复 / 行动两次解锁大招，每场一次';
+ window.FriendsBattleGame={run,prepare,get state(){return{mode,seed:match?.seed,cursor,playing,paused,finished,match}}};
+})();
+
+</script></body></html>
+
+
+
