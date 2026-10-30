@@ -2,7 +2,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const code=f=>fs.readFileSync('assets/'+f+'.js','utf8');
 function setup(saved){
   const elements=new Map(),listeners={},timers=[],messages=[];
-  class Element{constructor(){this.value='';this.children=[];this.hidden=false;this.contentWindow={postMessage:m=>messages.push(m)}}append(...x){this.children.push(...x)}replaceChildren(...x){this.children=x}scrollIntoView(){}}
+  class Element{constructor(){this.style={};this.classList={toggle(){}};this.value='';this.children=[];this.hidden=false;this.contentWindow={postMessage:m=>messages.push(m)}}append(...x){this.children.push(...x)}replaceChildren(...x){this.children=x}scrollIntoView(){}}
   const get=id=>{if(!elements.has(id))elements.set(id,new Element());return elements.get(id)};
   get('battle-speed').value='2';let stored=saved||null;
   const c={console,Uint32Array,JSON,Math,Number,String,URLSearchParams,crypto:{getRandomValues:a=>(a[0]=123,a)},document:{getElementById:get,createElement:()=>new Element(),addEventListener(){}},localStorage:{setItem:(k,v)=>stored=v,getItem:()=>stored},setTimeout:f=>timers.push(f),BattleAudio:{play(){},pause(){},stopMusic(){},unlock(){},effect(){},setMusic(){},setEffects(){},setVolume(){}},addEventListener:(k,f)=>listeners[k]=f};c.window=c;vm.createContext(c);for(const f of ['roster-skills','battle-roster','roster-battle-engine','swiss-engine','swiss-ui'])vm.runInContext(code(f),c);
