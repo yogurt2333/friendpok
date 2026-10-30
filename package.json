@@ -1,0 +1,12 @@
+{
+  "name": "friendpok",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "python work/build-roster-battle.py",
+    "test": "node work/check-roster-engine.cjs && node work/check-swiss.cjs && node work/check-roster-match.mjs && node work/check-swiss-playback.cjs"
+  },
+  "devDependencies": {
+    "happy-dom": "^21.0.4"
+  }
+}
