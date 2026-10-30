@@ -1,7 +1,3 @@
-# 校验脚本与依赖，不入库
-.check/
 node_modules/
-
-# 素材制作中间产物
-*.zip
 npm-cache/
+*.zip
