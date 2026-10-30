@@ -1,0 +1,12 @@
+window.BATTLE_ROSTER=[
+{id:'mano',name:'Mano',idle:'assets/mano-proportions.png',skills:[
+{id:'trip',name:'我烟呢？',amount:24,mode:'kick',art:'assets/skills/mano-fly.png'},
+{id:'scatter',name:'怎么全掉了',amount:27,mode:'triple',powers:[9,9,9],accuracy:.95,art:'assets/skills/mano-scatter.png'},
+{id:'heal',name:'抽一口',amount:18,mode:'heal',art:'assets/skills/mano-heal.png'},
+{id:'ult',name:'大烟杆子出离愤怒',amount:42,mode:'kick',powers:[6,6,6,24],times:[1200,1350,1500,2050],art:'assets/skills/mano-ultimate.png'}]},
+{id:'tong',name:'通风橱',idle:'assets/tongfengchu-50-v2.png',skills:[
+{id:'stab',name:'夏洛克三连刺',amount:27,mode:'triple',powers:[9,9,9],accuracy:.95,art:'assets/skills/tong-stab.png'},
+{id:'heal',name:'吃肠',amount:18,mode:'heal',art:'assets/skills/tong-eat.png'},
+{id:'shove',name:'塞你嘴里',amount:15,mode:'debuff',art:'assets/skills/tong-shove.png'},
+{id:'ult',name:'肠控全场',amount:42,mode:'triple',art:'assets/skills/tong-dj.png'}]},
+...window.ROSTER_SKILLS];
